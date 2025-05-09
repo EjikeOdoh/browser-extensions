@@ -1,0 +1,15 @@
+header {
+    display: flex;
+    background-color: var(--Neutral-0);
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    box-shadow: 1px 0px 2px var(--Neutral-300);
+    border-radius: 20px;
+}
+
+.themeBtn {
+    background-color: var(--Neutral-100);
+    padding: 10px;
+    border-radius: 10px;
+}

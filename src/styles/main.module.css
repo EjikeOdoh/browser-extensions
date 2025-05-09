@@ -1,0 +1,25 @@
+main {
+    display: grid;
+    gap: 40px;
+}
+
+h1 {
+    color: var(--Neutral-900);
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btns {
+    display: flex;
+    gap: 10px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+}
