@@ -99,7 +99,6 @@ let rawData = [
 export default function Main(props) {
 
   const [extArr, setExtArr] = useState(rawData)
-  const [activeExtArr, setActiveExtArr] = useState([])
 
   const handleToggle = (name) => {
     setExtArr((prevArr) => {
@@ -124,58 +123,16 @@ export default function Main(props) {
     />
   })
 
-  function logger(arg) {
-    if (arg === 'All') {
-      console.log('show all cards')
-      cards = extArr.map((card) => {
-        return <Card
-          key={card.name}
-          name={card.name}
-          logo={card.logo}
-          desc={card.description}
-          isActive={card.isActive}
-          handleClick={handleToggle}
-        />
-      })
-    } else if (arg === "Active") {
-      console.log('show active cards only')
-      setActiveExtArr(extArr.filter(item => item.isActive !== true))
-      console.log(activeExtArr)
-      cards = activeExtArr.map((card) => {
-        return <Card
-          key={card.name}
-          name={card.name}
-          logo={card.logo}
-          desc={card.description}
-          isActive={card.isActive}
-          handleClick={handleToggle}
-        />
-      })
-    }
-    else {
-      console.log('show inactive cards only')
-      setActiveExtArr(extArr.filter(item => item.isActive !== false))
-      cards = activeExtArr.map((card) => {
-        return <Card
-          key={card.name}
-          name={card.name}
-          logo={card.logo}
-          desc={card.description}
-          isActive={card.isActive}
-          handleClick={handleToggle}
-        />
-      })
-    }
-  }
+
 
   return (
     <main>
       <div className={styles.top}>
         <h1>Extensions List</h1>
         <div className={styles.btns}>
-          <Button text="All" handleClick={logger} isActive={true} />
-          <Button text='Active' handleClick={logger} isActive={false} />
-          <Button text="Inactive" handleClick={logger} isActive={false} />
+          <Button text="All" isActive={true} />
+          <Button text='Active' isActive={false} />
+          <Button text="Inactive" isActive={false} />
         </div>
 
       </div>
