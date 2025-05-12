@@ -95,10 +95,10 @@ let rawData = [
 ]
 
 
-
 export default function Main(props) {
 
   const [extArr, setExtArr] = useState(rawData)
+  const [isSelected, setIsSelected] = useState('All')
 
   const handleToggle = (name) => {
     setExtArr((prevArr) => {
@@ -112,7 +112,25 @@ export default function Main(props) {
     })
   }
 
-  let cards = extArr.map((card) => {
+  const removeExt =(name) => {
+    setExtArr(prev=>{
+      return prev.filter((x)=>{
+        return x.name !== name
+      })
+    })
+  }
+
+  let extensions = extArr.filter((ext)=>{
+    if (isSelected === "All") {
+      return true
+    } else if (isSelected === "Active") {
+      return ext.isActive === true
+    } else if (isSelected === "Inactive") {
+      return ext.isActive === false
+    }
+  })
+
+  let cards = extensions.map((card) => {
     return <Card
       key={card.name}
       name={card.name}
@@ -120,9 +138,9 @@ export default function Main(props) {
       desc={card.description}
       isActive={card.isActive}
       handleClick={handleToggle}
+      handleRemove={removeExt}
     />
   })
-
 
 
   return (
@@ -130,11 +148,10 @@ export default function Main(props) {
       <div className={styles.top}>
         <h1>Extensions List</h1>
         <div className={styles.btns}>
-          <Button text="All" isActive={true} />
-          <Button text='Active' isActive={false} />
-          <Button text="Inactive" isActive={false} />
+          <Button text="All" isActive={isSelected === "All"} handleClick={()=>setIsSelected('All')} />
+          <Button text='Active' isActive={isSelected==="Active"} handleClick={()=>setIsSelected('Active')}  />
+          <Button text="Inactive" isActive={isSelected==="Inactive"} handleClick={()=>setIsSelected('Inactive')}  />
         </div>
-
       </div>
       <div className={styles.cards}>
         {cards}

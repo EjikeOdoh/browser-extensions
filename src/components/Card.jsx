@@ -20,7 +20,7 @@ export default function Card(props) {
                 </div>
             </div>
             <div className={styles.bottom}>
-                <button className={styles.removeBtn}>
+                <button onClick={()=>props.handleRemove(props.name)} className={styles.removeBtn}>
                     Remove
                 </button>
                 <button onClick={()=>props.handleClick(props.name)} className={styles.toggleBtn}>
